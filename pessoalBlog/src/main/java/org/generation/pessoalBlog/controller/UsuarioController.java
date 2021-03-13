@@ -2,6 +2,8 @@ package org.generation.pessoalBlog.controller;
 
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.generation.pessoalBlog.model.UserLogin;
 import org.generation.pessoalBlog.model.Usuario;
 import org.generation.pessoalBlog.service.UsuarioService;
@@ -16,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/usuario")
-@CrossOrigin(origins="*",allowedHeaders="*")
+//@CrossOrigin(origins="*",allowedHeaders="*")
 public class UsuarioController {
 	
 	@Autowired
@@ -28,7 +30,7 @@ public class UsuarioController {
 				.orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
 	}
 	@PostMapping("/cadastrar")
-	public ResponseEntity<Usuario> Post(@RequestBody Usuario usuario){
+	public ResponseEntity<Usuario> Post(@Valid @RequestBody Usuario usuario){
 		return ResponseEntity.status(HttpStatus.CREATED)
 				.body(usuarioService.CadastrarUsuario(usuario));
 	}

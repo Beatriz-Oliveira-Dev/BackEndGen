@@ -31,12 +31,12 @@ public class PostagemController {
 		return ResponseEntity.ok(repository.findAll());
 	}
 	@GetMapping("/{id}")
-	public ResponseEntity<Postagem> getById(@PathVariable Long id){
+	public ResponseEntity<Postagem> getById(@PathVariable(value = "id") Long id){
 		return repository.findById(id).map(resp -> ResponseEntity.ok(resp))
 										.orElse(ResponseEntity.notFound().build());
 	}
 	@GetMapping("/titulo/{titulo}")
-		public ResponseEntity<List<Postagem>> getByTitulo(@PathVariable String titulo){
+		public ResponseEntity<List<Postagem>> getByTitulo(@PathVariable(value = "titulo") String titulo){
 		return ResponseEntity.ok(repository.findAllByTituloContainingIgnoreCase(titulo));
 	}
 	@PostMapping
